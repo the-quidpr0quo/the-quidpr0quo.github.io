@@ -42,7 +42,7 @@ Likewise, although I am not proud to be saying I haven't test enough web apps to
 I believe these are the very basics to be a pentester . But sometimes, when work piles up (for example, having 10+ projects happening at the same time in a week for a consultant in Asia - unfortunately saying this had happened to myself and it was not a good balance) or when we become lazy by simplying firing up the standard sets tools to perform a test - we ignore the importance of understanding / being aware of what is happening around the situation you were placed into - the test / being aware to this ever changing post-apocalyptical world.
 
 
-## My journey so far
+# My journey so far
 I have tried a bit of everything but I'm still proud to say I dunno everything. Back in the days, because we were such a big professional service/consultancy provider, I got to try a bit of everything - from security awareness training, phishing simulations to internal infrastructure testing, red teaming, cyber attacks simulations etc. etc.
 Thanks to my old team and special thanks to Hsin and Charz who both have been so patient and open to nurture and grow me during my times at the organization. 
 
@@ -50,11 +50,13 @@ My biggest growth so far I'd still say they were when I got the chance to shadow
 
 The best learning is in the process not the result. So I believe that's why doing a write-up is sooooooo important. Plus where do we put our memories if we don't compress them?
 
-### Dont underestimate yourself but don't be an excessive wanker
+# Dont underestimate yourself but don't be an excessive wanker
+There were many times I felt overwhelmed because there were so much to learn and I regret being late on this table of fun and joys - but it is also important to be patient while taking things slowly to enjoy the process of learning. A certain level of confidence does help you "try harder". And the same kind of certainty of knowledge also helps with solidate / weaponize one's skills. 
+
+That being the case, overconfidence on a paritcular topic might just as well make you blind - the fact that you may overlook stuff you should be looking at in the first place. 
 
 
-
-#### Going on
+# Going on
 
 The day before writing this blog, I also had a good conversation with two of my ex-"juniors", who are also good CTF players. What inspires me is the linkage of CTF culture with this industry, so tricky but so beneficial in a way that player focuses on concepts and the art of "computing research && discoveries" (..cough..cough, correct me if I have phrased it wrong and forgive me being without a good computing background) All in all, at the moment I am also looking for to partake more CTF competitions and write up my experiences despite the day-to-day work and life - but I'm equally happy to pursue my passion to the next level / challenges.
 
