@@ -15,7 +15,7 @@ I could still remember the very first day I met my first infosec employer, he sp
 
 Thank you KT, for giving me the opportunity in the first place.
 
-I noticed this becomes more important since I have moved to Europe and recognize the difference between the lateral thinking mindsets (more popular in western societies) and driven mentality (more popular in Asia). Seeing the difference and thanks to the encouragement by [JxTx](https://jxtx.gitlab.io/), I am also learning to blog my experience and learning given my background and unorthdox journey to Cybersecurity, hopefully it'll be an enjoyable read to anyone interested :)
+I noticed this becomes more important since I have moved to Europe and recognize the difference between the lateral thinking mindsets (more popular in western societies) and driven mentality (more popular in Asia). Seeing the difference and thanks to the encouragement by [JxTx](https://jxtx.gitlab.io/), [captmeelo](https://captmeelo.com/about) and [1chidan](https://medium.com/@1chidan/zero-to-oscp-concise-edition-b5ecd4a781c3) with whom I have actually met IRL after reading his post 2 years ago,  I am also learning to blog my experience and learning given my background and unorthdox journey to Cybersecurity, hopefully it'll be an enjoyable read to anyone interested :)
 
 
 # Situational Awareness
