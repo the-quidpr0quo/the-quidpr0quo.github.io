@@ -25,6 +25,3 @@ Thank you KT, for giving me the opportunity in the first place.
 
 Lastly, a little reminder to myself && important 2cents to anyone with zero knowledge/background like me: **Be patient but also be proud of yourself :) **
 
-![_config.yml]({{ site.baseurl }}/images/config.png)
-
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
