@@ -21,7 +21,7 @@ I noticed this becomes more important since I have moved to Europe and recognize
 # Situational Awareness
 My very first project in cybersecurity is a Behavioral based Anti-virus Implementation Project for a big organization. The large organization faced difficulties to "encourage" its IT consulting employees to install AV solutions and ended up requesting external parties (my assigned role) to step in and facilitate the installation on each domainless project-based computer) - which is ridiculous by the way. :-( 
 
-As embarassing as it was (the fact that it sounds like an IT support / Project Management task, which it was!), I learnt my very first "ping" and "whoami" command there while at the same time being a consultancy project it was required for me to identify the risk areas the organization may face. Questions such as the below become my daily conversation with my client:
+As embarassing as it was (the fact that it sounds like an IT support / Project Management task, which it was!), I learnt my very first "ping" and "hostname" command there while at the same time being a consultancy project it was required for me to identify the risk areas the organization may face. Questions such as the below become my daily conversation with my client:
 - How does the organization keep track of its asset management?
 - What were the reasons IT Support face difficulty in such situation? How exactly do they work for the uncontrolled employees. 
 - How does the employees of domainless computers work in the organization?
@@ -39,19 +39,26 @@ Likewise, although I am not proud to be saying I haven't test enough web apps to
 - What are the controls the web developers have already applied to this web applications? URL encoding? Input Validation etc?
 - How did the web developer build and maintain this site? How do they perform the work? Can we leverage that to impersonate them and make changes to the server?
 
-I believe these are the very basics to be a pentester . But sometimes, when work piles up (for example, having 10+ projects happening at the same time in a week for a consultant in Asia - unfortunately saying this had happened to myself and it was not a good balance) or when we become lazy by simplying firing up the standard sets tools to perform a test - we ignore the importance of understanding / being aware of what is happening around the situation you were placed into - the test.
+I believe these are the very basics to be a pentester . But sometimes, when work piles up (for example, having 10+ projects happening at the same time in a week for a consultant in Asia - unfortunately saying this had happened to myself and it was not a good balance) or when we become lazy by simplying firing up the standard sets tools to perform a test - we ignore the importance of understanding / being aware of what is happening around the situation you were placed into - the test / being aware to this ever changing post-apocalyptical world.
 
 
 ## My journey so far
+I have tried a bit of everything but I'm still proud to say I dunno everything. Back in the days, because we were such a big professional service/consultancy provider, I got to try a bit of everything - from security awareness training, phishing simulations to internal infrastructure testing, red teaming, cyber attacks simulations etc. etc.
+Thanks to my old team and special thanks to Hsin and Charz who both have been so patient and open to nurture and grow me during my times at the organization. 
+
+My biggest growth so far I'd still say they were when I got the chance to shadow a very good senior tester and preparing professional exams. For example, at the time of writing, I recalled the concept of "situational awareness" - which can sometimes be forgotten by freshers. As to exams, I do enjoy the structure of a good exam / bootcamp / lab experience where you can try, fail and reflect. Some of them I have attempted more than once - do not take it too hard for a failure on an exam and the fact that the more times you attempted the more experience you have compared to having one trial only. (of course, exam re-attempts could empty your wallets though) I used to have a colleague who attempted the OSCP exam 4 times and he actually becomes a very skillful tester. However if one were to only take exams for certification, that'd be completely wrong. I am putting this into an important note because I personally come from a "fast-food" city where everyone focus excessively into results/ being too result-oriented.
+
+The best learning is in the process not the result. So I believe that's why doing a write-up is sooooooo important. Plus where do we put our memories if we don't compress them?
 
 ### Dont underestimate yourself but don't be an excessive wanker
 
+
+
 #### Going on
 
+The day before writing this blog, I also had a good conversation with two of my ex-"juniors", who are also good CTF players. What inspires me is the linkage of CTF culture with this industry, so tricky but so beneficial in a way that player focuses on concepts and the art of "computing research && discoveries" (..cough..cough, correct me if I have phrased it wrong and forgive me being without a good computing background) All in all, at the moment I am also looking for to partake more CTF competitions and write up my experiences despite the day-to-day work and life - but I'm equally happy to pursue my passion to the next level / challenges.
 
 
 
-
-
-Lastly, a little reminder to myself && important 2cents to anyone with zero knowledge/background like me: **Be patient but also be proud of yourself :) **
+Lastly, a little reminder to myself && important 2cents to anyone with zero knowledge/background like myself: **Be patient but also be proud of yourself :) **
 
