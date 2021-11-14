@@ -62,5 +62,5 @@ The day before writing this blog, I also had a good conversation with two of my 
 
 
 
-Lastly, a little reminder to myself && important 2cents to anyone with zero knowledge/background like myself: **Be patient but also be proud of yourself :) **
+Lastly, a little reminder to myself && important 2cents to anyone with zero knowledge/background like myself: **Be patient but also be proud of yourself** :-)
 
