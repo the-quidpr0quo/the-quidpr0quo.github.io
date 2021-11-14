@@ -42,7 +42,11 @@ Likewise, although I am not proud to be saying I haven't test enough web apps to
 I believe these are the very basics to be a pentester . But sometimes, when work piles up (for example, having 10+ projects happening at the same time in a week for a consultant in Asia - unfortunately saying this had happened to myself and it was not a good balance) or when we become lazy by simplying firing up the standard sets tools to perform a test - we ignore the importance of understanding / being aware of what is happening around the situation you were placed into - the test.
 
 
+## My journey so far
 
+### Dont underestimate yourself but don't be an excessive wanker
+
+#### Going on
 
 
 
