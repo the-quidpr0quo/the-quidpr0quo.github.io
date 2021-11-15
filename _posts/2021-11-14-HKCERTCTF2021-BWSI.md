@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2021-11-14-HKCERT-CTF2021
+title: 2021-11-14-HKCERT-CTF2021-Because-W
 ---
 
 This is my first CTF writeup ;)
