@@ -4,6 +4,7 @@ title: 2021-11-14-HKCERT-CTF2021-BWSI
 ---
 
 This is my first CTF writeup ;)
+![image](https://user-images.githubusercontent.com/94167587/141765929-ed49c543-7d05-4ef2-abd7-f4d5cd423d4a.png)
 
 Invited to the **HKCERT CTF 2021**, although shamefully didn't have time to fully participate in the competition, I am happy to try out one of the CTF questions written by an old friend, which happens to be my high school frd. Nice chap by the way XD
 
