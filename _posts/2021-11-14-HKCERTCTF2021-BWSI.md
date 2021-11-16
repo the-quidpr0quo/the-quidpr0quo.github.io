@@ -8,7 +8,7 @@ This is my first CTF writeup ;)
 
 Invited to the **HKCERT CTF 2021**, although shamefully didn't have time to fully participate in the competition, I am happy to try out one of the CTF questions written by an old friend, which happens to be my high school frd. Nice chap by the way XD
 
-![image](https://user-images.githubusercontent.com/94167587/141699878-49579dcd-dd73-44b1-8596-f664d2fe7e0d.png)
+![image](https://user-images.githubusercontent.com/94167587/142050576-c7a1846b-5a77-41f6-a6ac-8eee8fa4e4ad.png)
 
 
 
