@@ -17,7 +17,7 @@ obuster dir -u http://<target> -w /usr/share/wordlists/dirbuster/directory-list-
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
-[+] Url:            http://188.166.244.154:81
+[+] Url:            http://<target>
 [+] Threads:        10
 [+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 [+] Status codes:   200,204,301,302,307,401,403
