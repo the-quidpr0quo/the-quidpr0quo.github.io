@@ -45,6 +45,38 @@ Alternatively, if I switched to [nikto](https://cirt.net/Nikto2), which is suppo
 *You still have a little bit more patient on the result thought, it wouldnt come up so quickly
 
 ```
+nikto -h http://<target>
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          <targetIP>
++ Target Hostname:    <targetIP>
++ Target Port:        <targetPort>
++ Start Time:         2021-11-26 18:18:39 (GMT-5)
+---------------------------------------------------------------------------
++ Server: Apache/2.2.22 (Debian)
++ Retrieved x-powered-by header: PHP/5.4.45-0+deb7u14
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Root page / redirects to: login/?clearcookie
++ OSVDB-630: The web server may reveal its internal or real IP in the Location header via a request to /images over HTTP/1.0. The value is "192.[..snip..]".
++ Apache/2.2.22 appears to be outdated (current is at least Apache/2.4.37). Apache 2.2.34 is the EOL for the 2.x branch.
++ OSVDB-59619: /inc/config.php: Bookmark4U v1.8.3 include files are not protected and may contain remote source injection by using the 'prefix' variable.
++ OSVDB-12184: /?=PHP[..snip..]: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHP[..snip..]2: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHP[..snip..]: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHP[..snip..]: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-3092: /login/: This might be interesting...
++ OSVDB-3268: /images/: Directory indexing found.
++ Server may leak inodes via ETags, header found with file /icons/README, inode: 1811744, size: 5108, mtime: Tue Aug 28 06:48:10 2007
++ OSVDB-3233: /icons/README: Apache default file found.
++ OSVDB-3092: /.git/index: Git Index file may contain directory listing information.
++ /.git/HEAD: Git HEAD file found. Full repo details may be present.
++ /.git/config: Git config file found. Infos about repo details may be present.
++ 8732 requests: 0 error(s) and 18 item(s) reported on remote host
++ End Time:           2021-11-26 18:49:59 (GMT-5) (1880 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
 
 
 ```
@@ -109,9 +141,15 @@ Accordingly, leveraging the “Extractor” tool within the GitTools, we are abl
 ```
 Now going through the git commits, we can see some hidden information (i.e. admin password to login)
 ![image](https://user-images.githubusercontent.com/94167587/143661014-5025407e-da74-40ee-a2b3-09087501910c.png)
+
+
 The author of this CTF is obviously giving a big shoutout/respect to the mightiest fruit hacker from the East. 
 Regardless, let's login and the first flag shall be captured easily.
 
 ![image](https://user-images.githubusercontent.com/94167587/143661138-24a02454-6e66-4ffa-93f3-ecf623b3d2d0.png)
+
+**Flag Two**
+
+Now we are in, let's spin up a Burp Suite to see what's going on. 
 
 
