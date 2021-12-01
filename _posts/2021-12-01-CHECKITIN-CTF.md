@@ -143,7 +143,9 @@ Accordingly, leveraging the “Extractor” tool within the GitTools, we are abl
 [+] Found file: /root/Desktop/GitTools-master/Extractor//[..snip..]/admin/adduser.php
 [+] Found file: /root/Desktop/GitTools-master/Extractor//[..snip..]/admin/info
 ```
+
 Now going through the git commits, we can see some hidden information (i.e. admin password to login)
+
 ![image](https://user-images.githubusercontent.com/94167587/143661014-5025407e-da74-40ee-a2b3-09087501910c.png)
 
 
