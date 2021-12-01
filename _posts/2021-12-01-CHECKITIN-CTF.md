@@ -212,11 +212,11 @@ If we look at the Users Management of this application, we will know that we are
 
  
 So we have to put ourselves into a situation where we want to attack the administrator, whether from demo1 or from orange; and if this payload is executed by another client, we were able to obtain their cookie. In real world, it’s how we do a Proof-of-Concept on the impact of an XSS attack 
-*[Stored-XSS]*( https://portswigger.net/web-security/cross-site-scripting/stored)
+[Stored-XSS](https://portswigger.net/web-security/cross-site-scripting/stored)
 
-Going back to the payload, special thanks to the training blog offered by [hkcertCTF2021] (https://training.hkcert21.pwnable.hk/) we can make use of [requestbin]( https://requestbin.com/) to host a site to capture a cookie that we are attempting to steal.
+Going back to the payload, special thanks to the training blog offered by [hkcertCTF2021](https://training.hkcert21.pwnable.hk/) we can make use of [requestbin]( https://requestbin.com/) to host a site to capture a cookie that we are attempting to steal.
 
-How do we craft a stored XSS payload in an attempt to steal one’s cookie? During the challenge, I have come across a number of good posts
+How do we craft a stored XSS payload in an attempt to steal one’s cookie? During the challenge, I have come across a number of good posts/blogs that are of a good read.:
 -	https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting
 -	https://brutelogic.com.br/blog/xss101/
 
