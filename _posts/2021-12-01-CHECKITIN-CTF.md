@@ -359,7 +359,16 @@ The result is promising:
 
 
 
-**Step 2 - 
+**Step 2 - Enuemrating the databases**
+
+The hint has told us that the table is "flag", but before going furhter to that, we should know which databases do this table belong to.
+We must therefore first craft the payload the enumerate the databases
+
+Work-IN-Progress
+
+
+
+
 
 Having said that, there is another easy and lazy way to win this flag - this is not an easy SQLi point to find though. I have encountered such function while doing flag 2 but because of this it also blinded me from thinking that it is related to flag 3. In a real test, however, we should go through each of the functionality one by one (and systematically) so we won’t miss any. (or, for completeness since the client paid us for that)
 I went through an awful lots of admin functions such as the Search function in Full Summary or Add User which I come across in testing because they are usually the weak spots. Yet, unfortunately, the injection points aren’t there. It’s until I revisit the Records Management I was able to discover a SQL injection point at the `Save Status` function. 
