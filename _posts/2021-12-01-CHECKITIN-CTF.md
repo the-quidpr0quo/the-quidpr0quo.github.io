@@ -357,6 +357,8 @@ The result is promising:
 ![image](https://user-images.githubusercontent.com/94167587/144337839-e646739d-0100-4177-9d99-3170f3e3082d.png)
 
 
+
+
 **Step 2 - 
 
 Having said that, there is another easy and lazy way to win this flag - this is not an easy SQLi point to find though. I have encountered such function while doing flag 2 but because of this it also blinded me from thinking that it is related to flag 3. In a real test, however, we should go through each of the functionality one by one (and systematically) so we won’t miss any. (or, for completeness since the client paid us for that)
