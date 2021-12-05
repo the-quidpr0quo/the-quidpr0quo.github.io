@@ -286,9 +286,9 @@ Last but not least, flag 3 is about the formidable SQL injection, at least we kn
 **Enumeration**
 
 I come across this SQL injection point at the `admin_session_id` parameter where a time delayed can be introduced with a payload comes from [CVE-2020-8596](https://blog.impenetrable.tech/cve-2020-8596)
+
+
 `'+(select*from(select(sleep(20)))a)+'`
-
-
 
 **Step 1 - Confirming a SQL injection point**
 
@@ -357,6 +357,8 @@ if __name__ == "__main__":
 
 ```
 The result is promising: 
+
+
 ![image](https://user-images.githubusercontent.com/94167587/144337839-e646739d-0100-4177-9d99-3170f3e3082d.png)
 
 
@@ -367,9 +369,48 @@ The result is promising:
 The hint has told us that the table is "flag", but before going furhter to that, we should know which databases do this table belong to.
 We must therefore first craft the payload the enumerate the databases
 
-Work-IN-Progress
+Digging deeper I cannot find a usable payload -whether by apending `AND` statement or using other payload. I also became mindful it is a mysql database which the demonstration by Rana Khail would not be 100% applicable. I am also aware of the fact that the origin of the payload that works orignate from the User-agent vuln - I continue my search with mysql statements and eventually found this, thanks to [this blog](https://musyokaian.medium.com/time-based-sql-injection-hsctf-big-blind-writeup-f3a320d63ea8):
+
+`(select sleep(10) from dual where database() like '%')`
+
+ A wildcard has been used to determine the database's name. However, what is needed more is the `''+payload+'` I learnt from the first payload that works, so I have applied such pattern into the payload and tested successfully. 
+
+`'+(select sleep(10) from dual where database() like '%')+'`
+
+With the help of Brute forcer in intruders, I bruteforce the character set from A-Z to by each character to determine the database's name 
+
+![image](https://user-images.githubusercontent.com/94167587/144756316-aa1535ad-3125-4fb6-935c-36612f1a57fd.png)
+
+The first character "a" which takes more time due to the sleep execution on the database
+Same tactics to find second and third characters making the database name as "app"
 
 
+**Step 3 - Enumerating the tablename**
+
+We know that the table is "flag" from the hint given so let's keep it short by enumerating the table directly and see whether there is a table called "flag"
+
+`'+(select sleep(10) from dual where (select table_name from information_schema.columns where table_schema=database() and column_name like '%flag%' limit 0,1) like '%')#+'`
+
+![image](https://user-images.githubusercontent.com/94167587/144756541-d80a219b-5352-4fb7-a498-d5294f7e76da.png)
+
+And the sleep works again! This actually proves that Step 2 can be skipped if you don't care about the database name. 
+
+**Step 4 - Getting the flag value**
+So the last bits of it is to get the flag value
+
+`'+(select sleep(10) from dual where (select * from flag where flag like '%hackaday%' limit 0,1) like '%')#+'`
+
+Again, if you have the confidence, you can directly skip Step 2 and 3 as well.
+
+To determine the actual value, it's best to apply an automated script:
+
+```
+Script writing in progress
+```
+
+
+
+Some good reference: [Security Idiots](http://www.securityidiots.com/Web-Pentest/SQL-Injection/time-based-blind-injection.html)
 
 
 **Injection Point 2**
