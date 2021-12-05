@@ -283,7 +283,8 @@ Last but not least, flag 3 is about the formidable SQL injection, at least we kn
 
 **Enumeration**
 
-I come across this SQL injection point at the `admin_session_id` parameter where a time delayed can be introduced with my payload `'`
+I come across this SQL injection point at the `admin_session_id` parameter where a time delayed can be introduced with a payload comes from [CVE-2020-8596](https://blog.impenetrable.tech/cve-2020-8596)
+`'+(select*from(select(sleep(20)))a)+'`
 
 
 
