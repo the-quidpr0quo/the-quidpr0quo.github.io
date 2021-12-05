@@ -414,6 +414,7 @@ Some good reference: [Security Idiots](http://www.securityidiots.com/Web-Pentest
 
 
 **Injection Point 2**
+
 ![image](https://user-images.githubusercontent.com/94167587/144216370-13a1a70e-fbf7-4da4-99c1-2310fb3c1029.png)
 
 Having said that, there is another easy and lazy way to win this flag - this is not an easy SQLi point to find though. I have encountered such function while doing flag 2 but because of this it also blinded me from thinking that it is related to flag 3. In a real test, however, we should go through each of the functionality one by one (and systematically) so we won’t miss any. (or, for completeness since the client paid us for that)
