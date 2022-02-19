@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post:wq
 title: Story
 permalink: /story/
 ---
