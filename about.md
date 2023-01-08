@@ -10,11 +10,8 @@ Born and raised in a deeply-infested financial and materialistic society in the 
 
 ### More Information
 
-A Traveller 
+Unidentified
 
-A Martial Arts enthusiast 
-
-A Glass Bead Game Player
 
 
 ### Contact me
